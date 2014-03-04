@@ -3,4 +3,5 @@ mocha = require 'gulp-mocha'
 
 gulp.task 'mocha', ->
   gulp.src 'test/**/*.coffee'
-    .pipe mocha()
+    .pipe mocha
+      ui: 'tdd'
