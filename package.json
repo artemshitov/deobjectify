@@ -23,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/artemshitov/misplace/issues"
   },
-  "homepage": "https://github.com/artemshitov/misplace"
+  "homepage": "https://github.com/artemshitov/misplace",
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+    "gulp-mocha": "^0.4.1",
+    "gulp-util": "^2.2.14",
+    "mocha": "^1.17.1",
+    "gulp": "^3.5.5"
+  }
 }
