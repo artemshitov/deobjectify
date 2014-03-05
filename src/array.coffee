@@ -16,7 +16,7 @@ exports.filter = uncurry (fn) -> (xs) ->
   xs.filter fn
 
 # arr.forEach(callback[, thisArg])
-exports.forEach = (fn, xs) ->
+exports.forEach = uncurry (fn) -> (xs) ->
   xs.forEach fn
 
 # arr.indexOf(searchElement[, fromIndex])

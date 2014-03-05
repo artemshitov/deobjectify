@@ -1,6 +1,5 @@
 assert = require 'assert'
 array = require '../src/array'
-flip  = require '../src/flip'
 
 suite 'Array', ->
   arr = null
@@ -31,6 +30,17 @@ suite 'Array', ->
       assert.deepEqual ['a'], array.filter(isA, arr)
     test 'curried', ->
       assert.deepEqual ['a'], array.filter(isA)(arr)
+
+  suite 'forEach', ->
+    ys = null
+    pushToYs = (val) -> ys.push val
+    setup -> ys = []
+    test 'normal', ->
+      array.forEach(pushToYs, arr)
+      assert.deepEqual ['a', 'b', 'c'], ys
+    test 'curried', ->
+      array.forEach(pushToYs)(arr)
+      assert.deepEqual ['a', 'b', 'c'], ys
 
   suite 'join', ->
     test 'normal', ->
