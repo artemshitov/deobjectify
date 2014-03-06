@@ -62,6 +62,22 @@ suite 'Array', ->
     test 'curried', ->
       assert.strictEqual 'a b c', array.join(' ')(arr)
 
+  suite 'lastIndexOf', ->
+    setup ->
+      arr = ['a', 'b', 'b', 'c']
+    test 'normal', ->
+      assert.strictEqual 2, array.lastIndexOf('b', arr)
+    test 'normal fromIndex', ->
+      assert.strictEqual 1, array.lastIndexOf('b', 1, arr)
+    test 'normal fromIndex nonexistent', ->
+      assert.strictEqual -1, array.lastIndexOf('b', 0, arr)
+    test 'curried', ->
+      assert.strictEqual 2, array.lastIndexOf('b')(arr)
+    test 'curried fromIndex', ->
+      assert.strictEqual 1, array.lastIndexOf('b')(1)(arr)
+    test 'curried fromIndex nonexistent', ->
+      assert.strictEqual -1, array.lastIndexOf('b')(0)(arr)
+
   suite 'slice', ->
     test 'normal', ->
       assert.deepEqual arr.slice(1), array.slice(1, arr)
