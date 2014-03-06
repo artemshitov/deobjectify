@@ -112,6 +112,17 @@ suite 'Array', ->
     test 'curried with null initial', ->
       assert.strictEqual 'abc', array.reduce(sum)(null)(arr)
 
+  suite 'reduceRight', ->
+    sum = (acc, x) -> acc + x
+    test 'normal', ->
+      assert.strictEqual 'cba', array.reduceRight(sum, '', arr)
+    test 'normal with null initial', ->
+      assert.strictEqual 'cba', array.reduceRight(sum, null, arr)
+    test 'curried', ->
+      assert.strictEqual 'cba', array.reduceRight(sum)('')(arr)
+    test 'curried with null initial', ->
+      assert.strictEqual 'cba', array.reduceRight(sum)(null)(arr)
+
   suite 'slice', ->
     test 'normal', ->
       assert.deepEqual arr.slice(1), array.slice(1, arr)

@@ -60,8 +60,11 @@ reduce = uncurry (fn) -> (initial) -> (xs) ->
     xs.reduce fn, initial
 
 # arr.reduceRight(callback[, initialValue])
-reduceRight = (fn, xs) ->
-  xs.reduceRight fn
+reduceRight = uncurry (fn) -> (initial) -> (xs) ->
+  if initial is null
+    xs.reduceRight fn
+  else
+    xs.reduceRight fn, initial
 
 # arr.reverse()
 reverse = (xs) ->
