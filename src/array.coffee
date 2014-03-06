@@ -104,11 +104,17 @@ splice = uncurry (index) -> (howMany) -> (ys) -> (xs) ->
 
 # arr.toLocaleString()
 toLocaleString = (xs) ->
-  do xs.toLocaleString
+  if typeChecks.isArray xs
+    Array.prototype.toLocaleString.call xs
+  else
+    Object.prototype.toLocaleString.call xs
 
 # arr.toString()
 toString = (xs) ->
-  do xs.toString
+  if typeChecks.isArray xs
+    Array.prototype.toString.call xs
+  else
+    Object.prototype.toString.call xs
 
 # arr.unshift(element1, ..., elementN)
 unshift = uncurry (x) -> (xs) ->
