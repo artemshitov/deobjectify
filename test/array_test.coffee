@@ -123,6 +123,13 @@ suite 'Array', ->
     test 'curried with null initial', ->
       assert.strictEqual 'cba', array.reduceRight(sum)(null)(arr)
 
+  suite 'reverse', ->
+    test 'normal', ->
+      assert.deepEqual ['c', 'b', 'a'], array.reverse(arr)
+    test 'does not mutate target', ->
+      array.reverse arr
+      assert.deepEqual ['a', 'b', 'c'], arr
+
   suite 'slice', ->
     test 'normal', ->
       assert.deepEqual arr.slice(1), array.slice(1, arr)

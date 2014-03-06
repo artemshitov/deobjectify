@@ -68,7 +68,7 @@ reduceRight = uncurry (fn) -> (initial) -> (xs) ->
 
 # arr.reverse()
 reverse = (xs) ->
-  xs.reverse()
+  do slice(0, xs).reverse
 
 # arr.shift()
 shift = (xs) ->
