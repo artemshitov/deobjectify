@@ -49,8 +49,8 @@ pop = (xs) ->
   slice 0, length(xs) - 1, xs
 
 # arr.push(element1, ..., elementN)
-push = (x, xs) ->
-  xs.push x
+push = uncurry (x) ->
+  concat [x]
 
 # arr.reduce(callback,[initialValue])
 reduce = (fn, xs) ->

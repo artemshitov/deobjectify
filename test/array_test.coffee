@@ -88,8 +88,17 @@ suite 'Array', ->
   suite 'pop', ->
     test 'normal', ->
       assert.deepEqual ['a', 'b'], array.pop(arr)
-    test 'non-mutating', ->
+    test 'does not mutate target', ->
       array.pop arr
+      assert.deepEqual ['a', 'b', 'c'], arr
+
+  suite 'push', ->
+    test 'normal', ->
+      assert.deepEqual ['a', 'b', 'c', 'd'], array.push('d', arr)
+    test 'curried', ->
+      assert.deepEqual ['a', 'b', 'c', 'd'], array.push('d')(arr)
+    test 'does not mutate target', ->
+      array.push 'd', arr
       assert.deepEqual ['a', 'b', 'c'], arr
 
   suite 'slice', ->
