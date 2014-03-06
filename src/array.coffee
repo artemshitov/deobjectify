@@ -111,8 +111,8 @@ toString = (xs) ->
   do xs.toString
 
 # arr.unshift(element1, ..., elementN)
-unshift = (x, xs) ->
-  xs.unshift x
+unshift = uncurry (x) -> (xs) ->
+  concat xs, [x]
 
 module.exports = { length, concat, every, filter, forEach, indexOf, join,
   lastIndexOf, map, pop, push, reduce, reduceRight, reverse, shift, slice,

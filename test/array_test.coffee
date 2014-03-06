@@ -194,3 +194,12 @@ suite 'Array', ->
   suite 'toString', ->
     test 'normal', ->
       assert.strictEqual 'a,b,c', array.toString(arr)
+
+  suite 'unshift', ->
+    test 'normal', ->
+      assert.deepEqual ['d', 'a', 'b', 'c'], array.unshift('d', arr)
+    test 'curried', ->
+      assert.deepEqual ['d', 'a', 'b', 'c'], array.unshift('d')(arr)
+    test 'does not mutate target', ->
+      array.unshift('d', arr)
+      assert.deepEqual ['a', 'b', 'c'], arr
