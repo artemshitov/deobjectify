@@ -85,8 +85,12 @@ some = uncurry (fn) -> (xs) ->
   xs.some fn
 
 # arr.sort([compareFunction])
-sort = (xs) ->
-  xs.sort()
+sort = uncurry (fn) ->
+  if typeChecks.isFunction fn
+    (xs) -> slice(0, xs).sort fn
+  else
+    xs = fn
+    do slice(0, xs).sort
 
 # array.splice(index , howMany[, element1[, ...[, elementN]]])
 splice = (start, removeNum, xs) ->

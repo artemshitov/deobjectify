@@ -153,3 +153,19 @@ suite 'Array', ->
       assert array.some(isString, arr)
     test 'curried', ->
       assert array.some(isString)(arr)
+
+  suite 'sort', ->
+    comparator = (a, b) -> switch
+      when a < b then -1
+      when a > b then 1
+      else 0
+    setup -> arr = ['c', 'b', 'a']
+    test 'normal', ->
+      assert.deepEqual ['a', 'b', 'c'], array.sort(arr)
+    test 'normal with comparator', ->
+      assert.deepEqual ['a', 'b', 'c'], array.sort(comparator, arr)
+    test 'curried with comparator', ->
+      assert.deepEqual ['a', 'b', 'c'], array.sort(comparator)(arr)
+    test 'does not mutate target', ->
+      array.sort arr
+      assert.deepEqual ['c', 'b', 'a'], arr
