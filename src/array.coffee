@@ -1,4 +1,5 @@
-uncurry = require './uncurry'
+uncurry    = require './uncurry'
+typechecks = require './typechecks'
 
 exports.length = (xs) ->
   xs.length
@@ -20,8 +21,12 @@ exports.forEach = uncurry (fn) -> (xs) ->
   xs.forEach fn
 
 # arr.indexOf(searchElement[, fromIndex])
-exports.indexOf = (x, xs) ->
-  xs.indexOf x
+exports.indexOf = uncurry (x) -> (fromIndex) ->
+  if typechecks.isArray fromIndex
+    xs = fromIndex
+    xs.indexOf x
+  else
+    (xs) -> xs.indexOf x, fromIndex
 
 # str = arr.join(separator)
 exports.join = uncurry (separator) -> (xs) ->

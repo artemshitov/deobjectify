@@ -42,6 +42,20 @@ suite 'Array', ->
       array.forEach(pushToYs)(arr)
       assert.deepEqual ['a', 'b', 'c'], ys
 
+  suite 'indexOf', ->
+    test 'normal', ->
+      assert.strictEqual 1, array.indexOf('b', arr)
+    test 'normal fromIndex', ->
+      assert.strictEqual 1, array.indexOf('b', 1, arr)
+    test 'normal fromIndex nonexistent', ->
+      assert.strictEqual -1, array.indexOf('b', 2, arr)
+    test 'curried', ->
+      assert.strictEqual 1, array.indexOf('b')(arr)
+    test 'curried fromIndex', ->
+      assert.strictEqual 1, array.indexOf('b')(1)(arr)
+    test 'curried fromIndex nonexistent', ->
+      assert.strictEqual -1, array.indexOf('b')(2)(arr)
+
   suite 'join', ->
     test 'normal', ->
       assert.strictEqual 'a b c', array.join(' ', arr)
