@@ -53,8 +53,11 @@ push = uncurry (x) ->
   concat [x]
 
 # arr.reduce(callback,[initialValue])
-reduce = (fn, xs) ->
-  xs.reduce fn
+reduce = uncurry (fn) -> (initial) -> (xs) ->
+  if initial is null
+    xs.reduce fn
+  else
+    xs.reduce fn, initial
 
 # arr.reduceRight(callback[, initialValue])
 reduceRight = (fn, xs) ->

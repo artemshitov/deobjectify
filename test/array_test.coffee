@@ -101,6 +101,17 @@ suite 'Array', ->
       array.push 'd', arr
       assert.deepEqual ['a', 'b', 'c'], arr
 
+  suite 'reduce', ->
+    sum = (acc, x) -> acc + x
+    test 'normal', ->
+      assert.strictEqual 'abc', array.reduce(sum, '', arr)
+    test 'normal with null initial', ->
+      assert.strictEqual 'abc', array.reduce(sum, null, arr)
+    test 'curried', ->
+      assert.strictEqual 'abc', array.reduce(sum)('')(arr)
+    test 'curried with null initial', ->
+      assert.strictEqual 'abc', array.reduce(sum)(null)(arr)
+
   suite 'slice', ->
     test 'normal', ->
       assert.deepEqual arr.slice(1), array.slice(1, arr)
