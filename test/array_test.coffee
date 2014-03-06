@@ -186,3 +186,11 @@ suite 'Array', ->
     test 'does not mutate target', ->
       array.splice(1, 1, 'd', arr)
       assert.deepEqual ['a', 'b', 'c'], arr
+
+  suite 'toLocaleString', ->
+    test 'normal', ->
+      assert.strictEqual 'a,b,c', array.toLocaleString(arr)
+
+  suite 'toString', ->
+    test 'normal', ->
+      assert.strictEqual 'a,b,c', array.toString(arr)

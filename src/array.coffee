@@ -104,11 +104,11 @@ splice = uncurry (index) -> (howMany) -> (ys) -> (xs) ->
 
 # arr.toLocaleString()
 toLocaleString = (xs) ->
-  xs.toLocaleString()
+  do xs.toLocaleString
 
 # arr.toString()
 toString = (xs) ->
-  xs.toString()
+  do xs.toString
 
 # arr.unshift(element1, ..., elementN)
 unshift = (x, xs) ->
