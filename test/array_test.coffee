@@ -146,3 +146,10 @@ suite 'Array', ->
     test 'does not mutate target', ->
       array.shift arr
       assert.deepEqual ['a', 'b', 'c'], arr
+
+  suite 'some', ->
+    isString = (val) -> typeof val is 'string'
+    test 'normal', ->
+      assert array.some(isString, arr)
+    test 'curried', ->
+      assert array.some(isString)(arr)

@@ -81,7 +81,7 @@ slice = uncurry (start) -> (end) ->
 shift = slice 1
 
 # arr.some(callback[, thisArg])
-some = (fn, xs) ->
+some = uncurry (fn) -> (xs) ->
   xs.some fn
 
 # arr.sort([compareFunction])
