@@ -139,3 +139,10 @@ suite 'Array', ->
       assert.deepEqual arr.slice(1), array.slice(1)(arr)
     test 'curried end', ->
       assert.deepEqual arr.slice(1, 2), array.slice(1)(2)(arr)
+
+  suite 'shift', ->
+    test 'normal', ->
+      assert.deepEqual ['b', 'c'], array.shift(arr)
+    test 'does not mutate target', ->
+      array.shift arr
+      assert.deepEqual ['a', 'b', 'c'], arr

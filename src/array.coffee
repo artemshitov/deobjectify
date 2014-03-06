@@ -70,16 +70,15 @@ reduceRight = uncurry (fn) -> (initial) -> (xs) ->
 reverse = (xs) ->
   do slice(0, xs).reverse
 
-# arr.shift()
-shift = (xs) ->
-  xs.shift()
-
 # arr.slice(begin[, end])
 slice = uncurry (start) -> (end) ->
   if end instanceof Array
     end.slice start
   else
     (xs) -> xs.slice start, end
+
+# arr.shift()
+shift = slice 1
 
 # arr.some(callback[, thisArg])
 some = (fn, xs) ->
