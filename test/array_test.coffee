@@ -78,6 +78,13 @@ suite 'Array', ->
     test 'curried fromIndex nonexistent', ->
       assert.strictEqual -1, array.lastIndexOf('b')(0)(arr)
 
+  suite 'map', ->
+    toUpperCase = (str) -> do str.toUpperCase
+    test 'normal', ->
+      assert.deepEqual ['A', 'B', 'C'], array.map(toUpperCase, arr)
+    test 'curried', ->
+      assert.deepEqual ['A', 'B', 'C'], array.map(toUpperCase)(arr)
+
   suite 'slice', ->
     test 'normal', ->
       assert.deepEqual arr.slice(1), array.slice(1, arr)

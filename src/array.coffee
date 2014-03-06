@@ -41,7 +41,7 @@ exports.lastIndexOf = uncurry (x) -> (fromIndex) ->
     (xs) -> xs.lastIndexOf x, fromIndex
 
 # arr.map(callback[, thisArg])
-exports.map = (fn, xs) ->
+exports.map = uncurry (fn) -> (xs) ->
   xs.map fn
 
 # arr.pop()
