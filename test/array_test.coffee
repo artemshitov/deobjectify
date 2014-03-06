@@ -85,6 +85,13 @@ suite 'Array', ->
     test 'curried', ->
       assert.deepEqual ['A', 'B', 'C'], array.map(toUpperCase)(arr)
 
+  suite 'pop', ->
+    test 'normal', ->
+      assert.deepEqual ['a', 'b'], array.pop(arr)
+    test 'non-mutating', ->
+      array.pop arr
+      assert.deepEqual ['a', 'b', 'c'], arr
+
   suite 'slice', ->
     test 'normal', ->
       assert.deepEqual arr.slice(1), array.slice(1, arr)
