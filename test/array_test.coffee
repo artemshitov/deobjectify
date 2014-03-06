@@ -169,3 +169,20 @@ suite 'Array', ->
     test 'does not mutate target', ->
       array.sort arr
       assert.deepEqual ['c', 'b', 'a'], arr
+
+  suite 'splice', ->
+    test 'normal', ->
+      assert.deepEqual ['a', 'd', 'c'], array.splice(1, 1, 'd', arr)
+    test 'normal with array', ->
+      assert.deepEqual ['a', 'd', 'e', 'c'], array.splice(1, 1, ['d', 'e'], arr)
+    test 'normal with null', ->
+      assert.deepEqual ['a', 'c'], array.splice(1, 1, null, arr)
+    test 'curried', ->
+      assert.deepEqual ['a', 'd', 'c'], array.splice(1)(1)('d')(arr)
+    test 'curried with array', ->
+      assert.deepEqual ['a', 'd', 'e', 'c'], array.splice(1)(1)(['d', 'e'])(arr)
+    test 'curried with null', ->
+      assert.deepEqual ['a', 'c'], array.splice(1)(1)(null)(arr)
+    test 'does not mutate target', ->
+      array.splice(1, 1, 'd', arr)
+      assert.deepEqual ['a', 'b', 'c'], arr

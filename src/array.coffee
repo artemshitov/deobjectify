@@ -93,8 +93,14 @@ sort = uncurry (fn) ->
     do slice(0, xs).sort
 
 # array.splice(index , howMany[, element1[, ...[, elementN]]])
-splice = (start, removeNum, xs) ->
-  xs.splice start, removeNum
+splice = uncurry (index) -> (howMany) -> (ys) -> (xs) ->
+  ys = switch
+    when typeChecks.isArray ys then ys
+    when ys is null then []
+    else [ys]
+  xs = slice 0, xs
+  Array.prototype.splice.apply xs, [index, howMany].concat(ys)
+  xs
 
 # arr.toLocaleString()
 toLocaleString = (xs) ->
