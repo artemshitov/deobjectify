@@ -1,8 +1,10 @@
-uncurry    = require './uncurry'
-curry      = require './curry'
+func       = require './function'
 typeChecks = require './typechecks'
 
-array = module.exports
+curry   = func.curry
+uncurry = func.uncurry
+
+array = module.exports = {}
 
 arrayProto  = Array.prototype
 objectProto = Object.prototype
