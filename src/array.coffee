@@ -11,36 +11,36 @@ array.length = (xs) ->
   xs.length
 
 array.concat = curry (ys, xs) ->
-  xs.concat ys
+  arrayProto.concat.call xs, ys
 
 array.every = curry (fn, xs) ->
-  xs.every fn
+  arrayProto.every.call xs, fn
 
 array.filter = curry (fn, xs) ->
-  xs.filter fn
+  arrayProto.filter.call xs, fn
 
 array.forEach = curry (fn, xs) ->
-  xs.forEach fn
+  arrayProto.forEach.call xs, fn
 
 array.indexOf = uncurry (x) -> (fromIndex) ->
   if typeChecks.isArray fromIndex
     xs = fromIndex
-    xs.indexOf x
+    arrayProto.indexOf.call xs, x
   else
-    (xs) -> xs.indexOf x, fromIndex
+    (xs) -> arrayProto.indexOf.call xs, x, fromIndex
 
 array.join = uncurry (separator) -> (xs) ->
-  xs.join separator
+  arrayProto.join.call xs, separator
 
 array.lastIndexOf = uncurry (x) -> (fromIndex) ->
   if typeChecks.isArray fromIndex
     xs = fromIndex
-    xs.lastIndexOf x
+    arrayProto.lastIndexOf.call xs, x
   else
-    (xs) -> xs.lastIndexOf x, fromIndex
+    (xs) -> arrayProto.lastIndexOf.call xs, x, fromIndex
 
 array.map = curry (fn, xs) ->
-  xs.map fn
+  arrayProto.map.call xs, fn
 
 array.pop = (xs) ->
   array.slice 0, array.length(xs) - 1, xs
@@ -50,37 +50,37 @@ array.push = uncurry (x) ->
 
 array.reduce = curry (fn, initial, xs) ->
   if initial is null
-    xs.reduce fn
+    arrayProto.reduce.call xs, fn
   else
-    xs.reduce fn, initial
+    arrayProto.reduce.call xs, fn, initial
 
 array.reduceRight = curry (fn, initial, xs) ->
   if initial is null
-    xs.reduceRight fn
+    arrayProto.reduceRight.call xs, fn
   else
-    xs.reduceRight fn, initial
-
-array.reverse = (xs) ->
-  do array.slice(0, xs).reverse
+    arrayProto.reduceRight.call xs, fn, initial
 
 array.slice = uncurry (start) -> (end) ->
   if typeChecks.isArray end
     xs = end
-    end.slice start
+    arrayProto.slice.call xs, start
   else
-    (xs) -> xs.slice start, end
+    (xs) -> arrayProto.slice.call xs, start, end
+
+array.reverse = (xs) ->
+  arrayProto.reverse.call array.slice(0, xs)
 
 array.shift = array.slice 1
 
 array.some = curry (fn, xs) ->
-  xs.some fn
+  arrayProto.some.call xs, fn
 
 array.sort = uncurry (fn) ->
   if typeChecks.isFunction fn
-    (xs) -> array.slice(0, xs).sort fn
+    (xs) -> arrayProto.sort.call array.slice(0, xs), fn
   else
     xs = fn
-    do array.slice(0, xs).sort
+    arrayProto.sort.call array.slice(0, xs)
 
 array.splice = curry (index, howMany, ys, xs) ->
   ys = switch
