@@ -61,7 +61,8 @@ array.reverse = (xs) ->
   do array.slice(0, xs).reverse
 
 array.slice = uncurry (start) -> (end) ->
-  if end instanceof Array
+  if typeChecks.isArray end
+    xs = end
     end.slice start
   else
     (xs) -> xs.slice start, end
