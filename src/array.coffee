@@ -1,23 +1,24 @@
 uncurry    = require './uncurry'
+curry      = require './curry'
 typeChecks = require './typechecks'
 
 length = (xs) ->
   xs.length
 
 # arr.concat(value1, value2, ..., valueN)
-concat = uncurry (ys) -> (xs) ->
+concat = curry (ys, xs) ->
   xs.concat ys
 
 # arr.every(callback[, thisArg])
-every = uncurry (fn) -> (xs) ->
+every = curry (fn, xs) ->
   xs.every fn
 
 # arr.filter(callback[, thisArg])
-filter = uncurry (fn) -> (xs) ->
+filter = curry (fn, xs) ->
   xs.filter fn
 
 # arr.forEach(callback[, thisArg])
-forEach = uncurry (fn) -> (xs) ->
+forEach = curry (fn, xs) ->
   xs.forEach fn
 
 # arr.indexOf(searchElement[, fromIndex])
@@ -41,7 +42,7 @@ lastIndexOf = uncurry (x) -> (fromIndex) ->
     (xs) -> xs.lastIndexOf x, fromIndex
 
 # arr.map(callback[, thisArg])
-map = uncurry (fn) -> (xs) ->
+map = curry (fn, xs) ->
   xs.map fn
 
 # arr.pop()
@@ -53,14 +54,14 @@ push = uncurry (x) ->
   concat [x]
 
 # arr.reduce(callback,[initialValue])
-reduce = uncurry (fn) -> (initial) -> (xs) ->
+reduce = curry (fn, initial, xs) ->
   if initial is null
     xs.reduce fn
   else
     xs.reduce fn, initial
 
 # arr.reduceRight(callback[, initialValue])
-reduceRight = uncurry (fn) -> (initial) -> (xs) ->
+reduceRight = curry (fn, initial, xs) ->
   if initial is null
     xs.reduceRight fn
   else
@@ -81,7 +82,7 @@ slice = uncurry (start) -> (end) ->
 shift = slice 1
 
 # arr.some(callback[, thisArg])
-some = uncurry (fn) -> (xs) ->
+some = curry (fn, xs) ->
   xs.some fn
 
 # arr.sort([compareFunction])
@@ -93,7 +94,7 @@ sort = uncurry (fn) ->
     do slice(0, xs).sort
 
 # array.splice(index , howMany[, element1[, ...[, elementN]]])
-splice = uncurry (index) -> (howMany) -> (ys) -> (xs) ->
+splice = curry (index, howMany, ys, xs) ->
   ys = switch
     when typeChecks.isArray ys then ys
     when ys is null then []
@@ -117,7 +118,7 @@ toString = (xs) ->
     Object.prototype.toString.call xs
 
 # arr.unshift(element1, ..., elementN)
-unshift = uncurry (x) -> (xs) ->
+unshift = curry (x, xs) ->
   concat xs, [x]
 
 module.exports = { length, concat, every, filter, forEach, indexOf, join,
