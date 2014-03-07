@@ -44,3 +44,13 @@ func.curry = func.uncurry (arity) ->
     curry fn.length, fn
   else
     (fn) -> curry(arity, fn)
+
+func.length = (fn) ->
+  fn.length
+
+func.apply = func.uncurry (target) -> (args) ->
+  if typeChecks.isFunction args
+    fn = args
+    fn.apply target
+  else
+    (fn) -> fn.apply target, args

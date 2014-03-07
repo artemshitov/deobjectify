@@ -34,3 +34,18 @@ suite 'function', ->
     arr = [['a', 'b'], ['c', 'd']]
     test 'joins', ->
       assert.strictEqual 'a: b; c: d', func.compose(array.join('; '), array.map(array.join(': ')))(arr)
+
+  suite 'length', ->
+    test 'normal', ->
+      assert.strictEqual 3, func.length((a, b, c) -> c)
+
+  suite 'apply', ->
+    arr      = []
+    setup ->
+      arr = ['a', 'b', 'c']
+    test 'normal', ->
+      assert.strictEqual 'a b c', func.apply(arr, [' '], Array.prototype.join)
+    test 'curried', ->
+      assert.strictEqual 'a b c', func.apply(arr)([' '])(Array.prototype.join)
+    test 'no args', ->
+      assert.strictEqual 'c', func.apply(arr, Array.prototype.pop)
