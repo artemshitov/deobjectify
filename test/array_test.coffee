@@ -203,3 +203,12 @@ suite 'Array', ->
     test 'does not mutate target', ->
       array.unshift('d', arr)
       assert.deepEqual ['a', 'b', 'c'], arr
+
+  suite 'clone', ->
+    arrCopy = null
+    setup ->
+      arrCopy = array.clone arr
+    test 'not same', ->
+      assert !Object.is(arr, arrCopy)
+    test 'equal', ->
+      assert.deepEqual arr, arrCopy

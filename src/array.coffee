@@ -10,6 +10,15 @@ objectProto = Object.prototype
 array.length = (xs) ->
   xs.length
 
+array.slice = uncurry (start) -> (end) ->
+  if typeChecks.isArray end
+    xs = end
+    arrayProto.slice.call xs, start
+  else
+    (xs) -> arrayProto.slice.call xs, start, end
+
+array.clone = array.slice 0
+
 array.concat = curry (ys, xs) ->
   arrayProto.concat.call xs, ys
 
@@ -60,15 +69,8 @@ array.reduceRight = curry (fn, initial, xs) ->
   else
     arrayProto.reduceRight.call xs, fn, initial
 
-array.slice = uncurry (start) -> (end) ->
-  if typeChecks.isArray end
-    xs = end
-    arrayProto.slice.call xs, start
-  else
-    (xs) -> arrayProto.slice.call xs, start, end
-
 array.reverse = (xs) ->
-  arrayProto.reverse.call array.slice(0, xs)
+  arrayProto.reverse.call array.clone(xs)
 
 array.shift = array.slice 1
 
@@ -77,10 +79,10 @@ array.some = curry (fn, xs) ->
 
 array.sort = uncurry (fn) ->
   if typeChecks.isFunction fn
-    (xs) -> arrayProto.sort.call array.slice(0, xs), fn
+    (xs) -> arrayProto.sort.call array.clone(xs), fn
   else
     xs = fn
-    arrayProto.sort.call array.slice(0, xs)
+    arrayProto.sort.call array.clone(xs)
 
 array.splice = curry (index, howMany, ys, xs) ->
   ys = switch
