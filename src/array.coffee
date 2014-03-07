@@ -4,6 +4,9 @@ typeChecks = require './typechecks'
 
 array = module.exports
 
+arrayProto  = Array.prototype
+objectProto = Object.prototype
+
 array.length = (xs) ->
   xs.length
 
@@ -85,20 +88,20 @@ array.splice = curry (index, howMany, ys, xs) ->
     when ys is null then []
     else [ys]
   xs = array.slice 0, xs
-  Array.prototype.splice.apply xs, [index, howMany].concat(ys)
+  arrayProto.splice.apply xs, [index, howMany].concat(ys)
   xs
 
 array.toLocaleString = (xs) ->
   if typeChecks.isArray xs
-    Array.prototype.toLocaleString.call xs
+    arrayProto.toLocaleString.call xs
   else
-    Object.prototype.toLocaleString.call xs
+    objectProto.toLocaleString.call xs
 
 array.toString = (xs) ->
   if typeChecks.isArray xs
-    Array.prototype.toString.call xs
+    arrayProto.toString.call xs
   else
-    Object.prototype.toString.call xs
+    objectProto.toString.call xs
 
 array.unshift = curry (x, xs) ->
   array.concat xs, [x]
