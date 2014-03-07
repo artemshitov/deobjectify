@@ -5,7 +5,7 @@ fn = (a, b, c, d) ->
   [a, b, c, d].join(' ')
 
 fnCurried = curry fn
-fnCurriedExplicit = curry fn, 3
+fnCurriedExplicit = curry 3, fn
 
 suite 'curry', ->
   test '1', ->

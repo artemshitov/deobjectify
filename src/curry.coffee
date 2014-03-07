@@ -1,6 +1,7 @@
-module.exports = (fn, arity) ->
-  arity = arity or fn.length
+typeChecks = require './typechecks'
+uncurry    = require './uncurry'
 
+curry = (arity, fn) ->
   accumulator = (argsGiven) ->
     helper = ->
       args = Array.prototype.slice.call arguments, 0
@@ -12,3 +13,10 @@ module.exports = (fn, arity) ->
         return accumulator(updatedArgsGiven)
 
   accumulator([])
+
+module.exports = uncurry (arity) ->
+  if typeChecks.isFunction arity
+    fn = arity
+    curry fn.length, fn
+  else
+    (fn) -> curry(arity, fn)
