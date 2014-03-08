@@ -27,3 +27,10 @@ string.indexOf = uncurry (x) -> (fromIndex) ->
     strProto.indexOf.call xs, x
   else
     (xs) -> strProto.indexOf.call xs, x, fromIndex
+
+string.lastIndexOf = uncurry (x) -> (fromIndex) ->
+  if typechecks.isString fromIndex
+    xs = fromIndex
+    strProto.lastIndexOf.call xs, x
+  else
+    (xs) -> strProto.lastIndexOf.call xs, x, fromIndex

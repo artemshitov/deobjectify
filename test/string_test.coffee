@@ -40,3 +40,19 @@ suite 'string', ->
       assert.strictEqual 1, string.indexOf('b')(1)(str)
     test 'curried fromIndex nonexistent', ->
       assert.strictEqual -1, string.indexOf('b')(2)(str)
+
+  suite 'lastIndexOf', ->
+    setup ->
+      arr = ['a', 'b', 'b', 'c']
+    test 'normal', ->
+      assert.strictEqual 1, string.lastIndexOf('b', str)
+    test 'normal fromIndex', ->
+      assert.strictEqual 1, string.lastIndexOf('b', 1, str)
+    test 'normal fromIndex nonexistent', ->
+      assert.strictEqual -1, string.lastIndexOf('b', 0, str)
+    test 'curried', ->
+      assert.strictEqual 1, string.lastIndexOf('b')(str)
+    test 'curried fromIndex', ->
+      assert.strictEqual 1, string.lastIndexOf('b')(1)(str)
+    test 'curried fromIndex nonexistent', ->
+      assert.strictEqual -1, string.lastIndexOf('b')(0)(str)
