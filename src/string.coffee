@@ -37,3 +37,6 @@ string.lastIndexOf = uncurry (x) -> (fromIndex) ->
 
 string.match = curry (regexp, str) ->
   strProto.match.call str, regexp
+
+string.replace = curry (what, withWhat, str) ->
+  strProto.replace.call str, what, withWhat
