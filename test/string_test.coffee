@@ -56,3 +56,9 @@ suite 'string', ->
       assert.strictEqual 1, string.lastIndexOf('b')(1)(str)
     test 'curried fromIndex nonexistent', ->
       assert.strictEqual -1, string.lastIndexOf('b')(0)(str)
+
+  suite 'match', ->
+    test 'normal', ->
+      assert.deepEqual 'b', string.match(/b/, str)[0]
+    test 'curried', ->
+      assert.deepEqual 'b', string.match(/b/)(str)[0]
