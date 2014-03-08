@@ -1,4 +1,5 @@
 func = require './function'
+array = require './array'
 typechecks = require './typechecks'
 
 curry   = func.curry
@@ -19,3 +20,10 @@ string.charCodeAt = curry (index, str) ->
 
 string.concat = curry (ys, xs) ->
   strProto.concat.call xs, ys
+
+string.indexOf = uncurry (x) -> (fromIndex) ->
+  if typechecks.isString fromIndex
+    xs = fromIndex
+    strProto.indexOf.call xs, x
+  else
+    (xs) -> strProto.indexOf.call xs, x, fromIndex
