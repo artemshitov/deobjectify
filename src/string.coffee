@@ -13,3 +13,6 @@ string.length = (str) ->
 
 string.charAt = curry (index, str) ->
   strProto.charAt.call str, index
+
+string.charCodeAt = curry (index, str) ->
+  strProto.charCodeAt.call str, index
