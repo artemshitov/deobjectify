@@ -20,3 +20,9 @@ suite 'string', ->
       assert.strictEqual 99, string.charCodeAt(2, str)
     test 'curried', ->
       assert.strictEqual 99, string.charCodeAt(2)(str)
+
+  suite 'concat', ->
+    test 'normal', ->
+      assert.strictEqual str, string.concat('def', 'abc ')
+    test 'curried', ->
+      assert.strictEqual str, string.concat('def')('abc ')

@@ -16,3 +16,6 @@ string.charAt = curry (index, str) ->
 
 string.charCodeAt = curry (index, str) ->
   strProto.charCodeAt.call str, index
+
+string.concat = curry (ys, xs) ->
+  strProto.concat.call xs, ys
