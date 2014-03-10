@@ -98,3 +98,13 @@ suite 'string', ->
       assert.deepEqual ['abc'], string.split(' ')(1)(str)
     test 'curried without separator', ->
       assert.deepEqual ['abc def'], string.split(null)(str)
+
+  suite 'substr', ->
+    test 'normal', ->
+      assert.strictEqual 'def', string.substr(4, str)
+    test 'normal with length', ->
+      assert.strictEqual 'd', string.substr(4, 1, str)
+    test 'curried', ->
+      assert.strictEqual 'def', string.substr(4)(str)
+    test 'curried with length', ->
+      assert.strictEqual 'd', string.substr(4)(1)(str)

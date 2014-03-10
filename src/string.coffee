@@ -57,3 +57,10 @@ string.split = uncurry (separator) -> (limit) ->
     strProto.split.call str, separator
   else
     (str) -> strProto.split.call str, separator, limit
+
+string.substr = uncurry (start) -> (length) ->
+  if typechecks.isString length
+    str = length
+    strProto.substr.call str, start
+  else
+    (str) -> strProto.substr.call str, start, length
