@@ -50,3 +50,10 @@ string.slice = uncurry (start) -> (end) ->
     strProto.slice.call xs, start
   else
     (xs) -> strProto.slice.call xs, start, end
+
+string.split = uncurry (separator) -> (limit) ->
+  if typechecks.isString limit
+    str = limit
+    strProto.split.call str, separator
+  else
+    (str) -> strProto.split.call str, separator, limit

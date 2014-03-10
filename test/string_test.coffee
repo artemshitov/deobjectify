@@ -84,3 +84,17 @@ suite 'string', ->
       assert.deepEqual str.slice(1), string.slice(1)(str)
     test 'curried end', ->
       assert.deepEqual str.slice(1, 2), string.slice(1)(2)(str)
+
+  suite 'split', ->
+    test 'normal', ->
+      assert.deepEqual ['abc', 'def'], string.split(' ', str)
+    test 'normal with limit', ->
+      assert.deepEqual ['abc'], string.split(' ', 1, str)
+    test 'normal without separator', ->
+      assert.deepEqual ['abc def'], string.split(null, str)
+    test 'curried', ->
+      assert.deepEqual ['abc', 'def'], string.split(' ')(str)
+    test 'curried with limit', ->
+      assert.deepEqual ['abc'], string.split(' ')(1)(str)
+    test 'curried without separator', ->
+      assert.deepEqual ['abc def'], string.split(null)(str)
