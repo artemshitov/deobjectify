@@ -138,3 +138,7 @@ suite 'string', ->
   suite 'toString', ->
     test 'normal', ->
       assert.strictEqual str, string.toString(str)
+
+  suite 'trim', ->
+    test 'normal', ->
+      assert.strictEqual str, string.trim('  abc def    ')

@@ -79,3 +79,5 @@ string.toLowerCase = (str) -> strProto.toLowerCase.call str
 string.toUpperCase = (str) -> strProto.toUpperCase.call str
 
 string.toString = (str) -> strProto.toString.call str
+
+string.trim = (str) -> do str.trim
