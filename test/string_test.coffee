@@ -134,3 +134,7 @@ suite 'string', ->
   suite 'toUpperCase', ->
     test 'normal', ->
       assert.strictEqual 'ABC DEF', string.toUpperCase(str)
+
+  suite 'toString', ->
+    test 'normal', ->
+      assert.strictEqual str, string.toString(str)
