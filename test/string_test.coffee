@@ -74,3 +74,13 @@ suite 'string', ->
       assert.deepEqual 1, string.search(/b/, str)
     test 'curried', ->
       assert.deepEqual 1, string.search(/b/)(str)
+
+  suite 'slice', ->
+    test 'normal', ->
+      assert.deepEqual str.slice(1), string.slice(1, str)
+    test 'normal end', ->
+      assert.deepEqual str.slice(1, 2), string.slice(1, 2, str)
+    test 'curried', ->
+      assert.deepEqual str.slice(1), string.slice(1)(str)
+    test 'curried end', ->
+      assert.deepEqual str.slice(1, 2), string.slice(1)(2)(str)

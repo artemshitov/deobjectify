@@ -43,3 +43,10 @@ string.replace = curry (what, withWhat, str) ->
 
 string.search = curry (regexp, str) ->
   strProto.search.call str, regexp
+
+string.slice = uncurry (start) -> (end) ->
+  if typechecks.isString end
+    xs = end
+    strProto.slice.call xs, start
+  else
+    (xs) -> strProto.slice.call xs, start, end
