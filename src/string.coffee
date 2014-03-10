@@ -40,3 +40,6 @@ string.match = curry (regexp, str) ->
 
 string.replace = curry (what, withWhat, str) ->
   strProto.replace.call str, what, withWhat
+
+string.search = curry (regexp, str) ->
+  strProto.search.call str, regexp

@@ -68,3 +68,9 @@ suite 'string', ->
       assert.strictEqual 'def def', string.replace('abc', 'def', str)
     test 'curried', ->
       assert.strictEqual 'def def', string.replace('abc')('def')(str)
+
+  suite 'search', ->
+    test 'normal', ->
+      assert.deepEqual 1, string.search(/b/, str)
+    test 'curried', ->
+      assert.deepEqual 1, string.search(/b/)(str)
