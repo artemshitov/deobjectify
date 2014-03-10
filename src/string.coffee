@@ -71,3 +71,9 @@ string.substring = uncurry (start) -> (end) ->
     strProto.substring.call str, start
   else
     (str) -> strProto.substring.call str, start, end
+
+string.toLocaleLowerCase = (str) -> strProto.toLocaleLowerCase.call str
+string.toLocaleUpperCase = (str) -> strProto.toLocaleUpperCase.call str
+
+string.toLowerCase = (str) -> strProto.toLowerCase.call str
+string.toUpperCase = (str) -> strProto.toUpperCase.call str

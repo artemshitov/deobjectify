@@ -118,3 +118,19 @@ suite 'string', ->
       assert.strictEqual 'def', string.substring(4)(str)
     test 'curried with length', ->
       assert.strictEqual 'd', string.substring(4)(5)(str)
+
+  suite 'toLocaleLowerCase', ->
+    test 'normal', ->
+      assert.strictEqual str, string.toLocaleLowerCase('ABC DEF')
+
+  suite 'toLowerCase', ->
+    test 'normal', ->
+      assert.strictEqual str, string.toLowerCase('ABC DEF')
+
+  suite 'toLocaleUpperCase', ->
+    test 'normal', ->
+      assert.strictEqual 'ABC DEF', string.toLocaleUpperCase(str)
+
+  suite 'toUpperCase', ->
+    test 'normal', ->
+      assert.strictEqual 'ABC DEF', string.toUpperCase(str)
