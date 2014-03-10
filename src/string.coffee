@@ -64,3 +64,10 @@ string.substr = uncurry (start) -> (length) ->
     strProto.substr.call str, start
   else
     (str) -> strProto.substr.call str, start, length
+
+string.substring = uncurry (start) -> (end) ->
+  if typechecks.isString end
+    str = end
+    strProto.substring.call str, start
+  else
+    (str) -> strProto.substring.call str, start, end

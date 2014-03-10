@@ -108,3 +108,13 @@ suite 'string', ->
       assert.strictEqual 'def', string.substr(4)(str)
     test 'curried with length', ->
       assert.strictEqual 'd', string.substr(4)(1)(str)
+
+  suite 'substring', ->
+    test 'normal', ->
+      assert.strictEqual 'def', string.substring(4, str)
+    test 'normal with length', ->
+      assert.strictEqual 'd', string.substring(4, 5, str)
+    test 'curried', ->
+      assert.strictEqual 'def', string.substring(4)(str)
+    test 'curried with length', ->
+      assert.strictEqual 'd', string.substring(4)(5)(str)
