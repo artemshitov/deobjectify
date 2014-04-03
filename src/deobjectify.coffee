@@ -1,9 +1,8 @@
 arrayProto = Array.prototype
-strProto = String.prototype
-objProto = Object.prototype
+strProto   = String.prototype
+objProto   = Object.prototype
 
 # Curry helper
-
 curry = (fn) ->
   accumulator = (given) ->
     ->
@@ -18,7 +17,6 @@ curry = (fn) ->
 
 
 # Composer
-
 compose = ->
   fns = arrayProto.slice.call(arguments, 0).reverse()
 
@@ -41,9 +39,9 @@ getType = (val) ->
 equals = curry (expected, fn, target) ->
   fn(target) == expected
 
-isArray = equals('Array', getType)
+isArray    = equals('Array', getType)
 isFunction = equals('Function', getType)
-isString = equals('String', getType)
+isString   = equals('String', getType)
 
 getProto = (val) ->
   switch getType(val)
