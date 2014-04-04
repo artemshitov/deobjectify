@@ -8,7 +8,7 @@ clone = (xs) -> xs[0..]
 
 compose = (fns) ->
   (args...) ->
-    for fn in fns
+    for fn in fns.reverse()
       args = [fn.apply(this, args)]
     args[0]
 
