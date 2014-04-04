@@ -1,4 +1,4 @@
-d = deobjectify = module.exports
+d = deobjectify = module.exports = {}
 
 arrayProto = Array.prototype
 strProto   = String.prototype
@@ -7,8 +7,7 @@ objProto   = Object.prototype
 # Curry helper
 curry = (fn) ->
   accumulator = (given) ->
-    ->
-      args = arrayProto.slice.call arguments, 0
+    (args...)->
       given2 = given.concat args
 
       if given2.length >= fn.length
@@ -19,12 +18,9 @@ curry = (fn) ->
 
 
 # Composer
-compose = ->
-  fns = arrayProto.slice.call(arguments, 0).reverse()
-
-  ->
-    args = arrayProto.slice.call arguments, 0
-    for fn in fns
+compose = (fns...)->
+  (args...) ->
+    for fn in fns.reverse()
       args = [fn.apply(this, args)]
     args[0]
 
