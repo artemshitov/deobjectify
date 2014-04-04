@@ -1,5 +1,5 @@
 # Experimental direction with proper collection APIs
-c = collette = module.exports
+c = collette = module.exports = {}
 
 
 # Helpers
