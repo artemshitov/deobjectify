@@ -18,7 +18,7 @@ curry = (fn) ->
 
 
 # Composer
-compose = (fns...)->
+compose = (fns...) ->
   (args...) ->
     for fn in fns.reverse()
       args = [fn.apply(this, args)]
