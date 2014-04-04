@@ -1,7 +1,6 @@
 assert = require 'assert'
 d      = require '../src/deobjectify'
 
-
 arr = null
 str = null
 
@@ -11,7 +10,7 @@ suite 'deobjectify', ->
   setup ->
     arr = ['a', 'b', 'c']
     str = 'abc def'
-  
+
   suite 'slice', ->
     suite 'array', ->
       test 'normal', ->
@@ -35,6 +34,19 @@ suite 'deobjectify', ->
         assert.strictEqual 'bc', d.sliceTo(1, 3, str)
       test 'curried', ->
         assert.strictEqual 'bc', d.sliceTo(1)(3)(str)
+
+  suite 'concat', ->
+    suite 'array', ->
+      test 'normal', ->
+        assert.deepEqual ['a', 'b', 'c', 'd', 'e'], d.concat(['d', 'e'], arr)
+      test 'curried', ->
+        assert.deepEqual ['a', 'b', 'c', 'd', 'e'], d.concat(['d', 'e'])(arr)
+      test 'does not mutate target', ->
+        d.concat(['d', 'e'], arr)
+        assert.deepEqual ['a', 'b', 'c'], arr
+    suite 'string', ->
+      test 'normal', ->
+        assert.strictEqual str, d.concat(' def', 'abc')
 
   suite 'push', ->
     test 'normal', ->
@@ -90,4 +102,4 @@ suite 'deobjectify', ->
       assert.deepEqual ['a', 'b', 'c'], d.sortFn(comparator)(arr)
     test 'does not mutate target', ->
       d.sortFn comparator, arr
-      assert.deepEqual ['c', 'b', 'a'], arr    
+      assert.deepEqual ['c', 'b', 'a'], arr
